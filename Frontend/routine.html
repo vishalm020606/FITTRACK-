@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Routine Planner 📝</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="checkLogin()">
+
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="nav-left">
+            <span class="logo-text">FITTRACK 🤸‍♀️</span>
+        </div>
+        <nav class="nav-right">
+            <a href="login.html">Login</a>
+            <a href="dashboard.html">Home</a>
+            <a href="health.html">Health</a>
+            <a class="active" href="routine.html">Routine</a>
+        </nav>
+    </header>
+
+    <!-- MAIN GLASS CARD -->
+    <div class="glass-card">
+
+        <h1 class="title">Routine Planner 📝</h1>
+
+        <!-- SCREEN TIME -->
+        <div class="section-box">
+            <h3 class="section-title">Screen-Time (Yesterday)</h3>
+            <input type="number" id="screenYesterday" placeholder="Enter hours…" min="0" max="24">
+            <button id="screenBtn" class="btn">Submit Screen Time</button>
+            <div id="screenResponse" class="note"></div>
+        </div>
+
+        <!-- SLEEP -->
+        <div class="section-box">
+            <h3 class="section-title">Sleep Schedule</h3>
+
+
+            <label>Sleep Time</label>
+            <input type="time" id="sleepTime">
+            <label>Wake-up Time</label>
+            <input type="time" id="wakeTime">
+
+
+            <button id="calcSleepBtn" class="btn">Calculate Sleep</button>
+
+            <div id="sleepSummary" class="note" style="display:none;">
+                Total Sleep: <span id="totalSleep"></span> hrs <br>
+                <span id="sleepSuggestion"></span>
+            </div>
+        </div>
+
+        <!-- TASKS -->
+        <div class="section-box">
+            <h3 class="section-title">Daily Tasks (Breakfast • Work • Gym • Dinner)</h3>
+
+            <label>Breakfast *</label>
+            <input type="time" id="breakfast_time" onchange="renderPreview()">
+
+            <label>Work / College *</label>
+            <input type="time" id="work_time" onchange="renderPreview()">
+
+            <label>Gym *</label>
+            <input type="time" id="gym_time" onchange="renderPreview()">
+
+            <label>Dinner *</label>
+            <input type="time" id="dinner_time" onchange="renderPreview()">
+
+            <div style="display:flex; gap:10px; margin-top:10px;">
+                <input id="customName" placeholder="Custom Task…" style="flex:3;">
+                <input type="time" id="customTime" style="flex:1;">
+                <button id="addCustomBtn" class="btn" style="flex:1;">Add</button>
+            </div>
+
+            <!-- PREVIEW BOX -->
+            <h3 class="section-title" style="margin-top:16px;">Preview</h3>
+            <div id="preview" class="preview-box"></div>
+        </div>
+
+        <!-- SAVE -->
+        <button id="saveBtn" class="btn dark">Save Routine & Continue</button>
+
+        <div class="footer-links">
+            <a href="health.html">← Health</a>
+            <a href="dashboard.html">Next →</a>
+        </div>
+
+    </div>
+    <script src="auth.js"></script>
+    <script src="routine.js"></script>
+
+
+</body>
+
+</html>

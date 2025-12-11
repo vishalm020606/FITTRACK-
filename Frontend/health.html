@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ta">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Health Input - Health App</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+        /* NAVBAR */
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 75px;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            z-index: 9999;
+            font-size: 24px;
+            color: #ff2e52;
+            font-weight: 900;
+        }
+        
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 35px;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #ff6b78;
+            text-shadow: 0 0 10px #ff6b78;
+        }
+        /* CARD */
+        
+        .glass-card {
+            width: 480px;
+            margin: 120px auto 80px auto;
+            padding: 35px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(14px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+            text-align: center;
+        }
+        
+        .title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #ff5f7d;
+            margin-bottom: 22px;
+        }
+        
+        .inputs input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 16px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+        }
+        
+        .actions {
+            margin-top: 10px;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 12px;
+            background: rgba(255, 255, 255, 0.18);
+            color: white;
+        }
+        
+        .btn.primary {
+            background: linear-gradient(90deg, #ff5478, #ff2e52);
+            box-shadow: 0 6px 20px rgba(255, 60, 90, 0.35);
+        }
+        /* HOME / NEXT NAVIGATION */
+        
+        .card-nav {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            font-size: 14px;
+        }
+        
+        .card-nav a {
+            color: #ffffffcc;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.25s ease;
+        }
+        
+        .card-nav a:hover {
+            color: #ff5f7d;
+            text-shadow: 0 0 8px rgba(255, 80, 110, 0.55);
+        }
+        /* RESULT BOX */
+        
+        .result-box {
+            margin-top: 22px;
+            text-align: left;
+            padding: 20px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .result-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .result-list li::before {
+            content: "• ";
+            color: #ff6f8a;
+            font-weight: bold;
+        }
+        
+        .suggestions {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body onload="checkLogin()">
+
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <span>FITTRACK 🤸‍♀️</span>
+        <ul class="nav-links">
+            <li><a href="login.html">Login</a></li>
+            <li><a href="dashboard.html">Home</a></li>
+            <li><a href="health.html">Health</a></li>
+            <li><a href="routine.html">Routine</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN HEALTH CARD -->
+    <div class="glass-card">
+
+        <h1 class="title">Health Analyser 🧑‍⚕️</h1>
+
+        <div class="inputs">
+            <input type="number" id="height" placeholder="Height (cm)" min="1" step="1" />
+            <input type="number" id="weight" placeholder="Weight (kg)" min="1" step="0.1" />
+        </div>
+
+        <div class="actions">
+            <button class="btn primary" onclick="calculateHealth()">Calculate BMI</button>
+            <button class="btn" onclick="saveHealth()">Save & Continue</button>
+        </div>
+
+        <!-- PERFECT HOME/NEXT BUTTONS -->
+        <div class="card-nav">
+            <a href="dashboard.html">← Home</a>
+            <a href="routine.html">Next →</a>
+        </div>
+
+        <!-- RESULTS -->
+        <!-- RESULTS -->
+        <div id="healthSummary" style="display:none; text-align:left; margin-top:20px;">
+
+            <h3 style="color:#ff5f7d; margin-bottom:5px;">BMI Result</h3>
+            <p>BMI: <strong id="bmi-value"></strong></p>
+            <p>Calories Needed: <strong id="cal-value"></strong></p>
+            <p>Protein Needed: <strong id="protein-value"></strong></p>
+
+            <h3 style="color:#ff5f7d; margin-top:15px;">Diet Suggestions</h3>
+            <ul id="diet-value"></ul>
+
+            <h3 style="color:#ff5f7d; margin-top:15px;">Workout Suggestions</h3>
+            <ul id="workout-value"></ul>
+
+        </div>
+
+
+    </div>
+
+    <script src="health.js"></script>
+</body>
+
+</html>

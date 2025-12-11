@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home | Personal Optimizer</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Poppins, sans-serif;
+            height: 100vh;
+            background: url("image1.png") center/cover no-repeat fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(3px);
+        }
+        
+        .container {
+            position: relative;
+            width: 90%;
+            max-width: 1100px;
+            text-align: center;
+            animation: fadeUp 0.8s ease;
+        }
+        
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        h1 {
+            font-size: 42px;
+            color: #ff205a;
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px rgba(255, 40, 80, 0.9);
+            font-weight: 800;
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 30px;
+            border-radius: 18px;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 60, 90, 0.4);
+            box-shadow: 0 0 20px rgba(255, 40, 80, 0.6);
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            transition: 0.25s ease;
+            cursor: pointer;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(255, 60, 120, 0.9);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Welcome Back 👋 <br> Your Personal Optimizer</h1>
+
+        <div class="cards">
+            <a href="dashboard.html">
+                <div class="card">📊 Dashboard</div>
+            </a>
+            <a href="routine.html">
+                <div class="card">⏰ Routine Planner</div>
+            </a>
+            <a href="health.html">
+                <div class="card">💪 Health Overview</div>
+            </a>
+            <a href="screen.html">
+                <div class="card">📱 Screen-Time</div>
+            </a>
+        </div>
+    </div>
+
+</body>
+
+</html>

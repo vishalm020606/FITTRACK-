@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard 📈</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Inter, sans-serif;
+            background: url("image1.png") center/cover no-repeat fixed;
+            color: white;
+            padding-top: 90px;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: -1;
+        }
+        
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 75px;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            z-index: 9999;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: #ff2f4f;
+        }
+        
+        .links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        
+        .links a {
+            color: #ddd;
+            font-size: 17px;
+            font-weight: 600;
+            text-decoration: none;
+            padding-bottom: 4px;
+        }
+        
+        .links a:hover,
+        .links a.active {
+            color: #ff2f4f;
+            border-bottom: 2px solid #ff2f4f;
+        }
+        /* ---------- TITLE ---------- */
+        
+        h2 {
+            margin-top: 120px;
+            text-align: center;
+            font-size: 52px;
+            font-weight: 900;
+            color: #ff2f4f;
+        }
+        
+        .layout-grid {
+            max-width: 1500px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 30px;
+            border-radius: 25px;
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45), 0 0 25px rgba(255, 70, 90, 0.45);
+            min-height: 260px;
+            transition: .3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 45px rgba(255, 70, 90, 0.65);
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            color: #ff4f6d;
+        }
+        
+        .detail-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 14px 20px;
+            border-radius: 12px;
+            margin: 10px 0;
+        }
+        
+        .power-ring {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .ring-svg {
+            transform: rotate(-90deg);
+        }
+        
+        .ring-bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.2);
+            stroke-width: 18;
+        }
+        
+        .ring-progress {
+            fill: none;
+            stroke: #ffcc33;
+            stroke-width: 18;
+            stroke-linecap: round;
+            stroke-dasharray: 628;
+            stroke-dashoffset: 628;
+            transition: 1s ease-in-out;
+        }
+        
+        .ring-center {
+            position: absolute;
+            font-size: 38px;
+            font-weight: 900;
+            text-shadow: 0 0 12px #ff004c;
+        }
+        
+        .graph-row {
+            max-width: 1500px;
+            margin: 60px auto;
+            padding: 0 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .chart-card {
+            background: rgba(22, 22, 22, 0.75);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(255, 50, 70, 0.35);
+        }
+    </style>
+</head>
+
+<body onload="checkLogin()">
+
+    <nav class="top-nav">
+        <div class="logo">FITTRACK 🤸‍♀️</div>
+
+        <div class="links">
+            <a href="login.html">Login</a>
+            <a href="dashboard.html" class="active">Home</a>
+            <a href="health.html">Health</a>
+            <a href="routine.html">Routine</a>
+        </div>
+    </nav>
+
+    <h2>DASHBOARD 📈</h2>
+
+    <div class="layout-grid">
+        <div class="card power-ring">
+            <svg class="ring-svg" width="230" height="230">
+                <circle class="ring-bg" cx="115" cy="115" r="100"></circle>
+                <circle class="ring-progress" cx="115" cy="115" r="100"></circle>
+            </svg>
+            <div class="ring-center" id="energyPercentUI">40%</div>
+        </div>
+        <div class="card">
+            <div class="section-title">Health Overview ❤️</div>
+            <div class="detail-item">BMI: <span id="bmi-value"></span></div>
+            <div class="detail-item">Calories: <span id="cal-value"></span></div>
+            <div class="detail-item">Protein: <span id="protein-value"></span></div>
+            <div class="detail-item">Diet: <span id="diet-value"></span></div>
+            <div class="detail-item">Workout: <span id="workout-value"></span></div>
+        </div>
+        <div class="card">
+            <div class="section-title">Routine Overview 🌙</div>
+            <div class="detail-item">Sleep: <span id="sleep-value"></span> hrs</div>
+            <div class="detail-item">Routine: <span id="routine-plan"></span></div>
+            <div class="detail-item">Message: <span id="sleep-msg"></span></div>
+        </div>
+        <div class="card">
+            <div class="section-title">Screen-Time 📱</div>
+            <div class="detail-item">Today: <span id="screen-min"></span> min</div>
+            <div class="detail-item">Alert: <span id="screen-msg"></span></div>
+        </div>
+        <div class="card">
+            <div class="section-title">Daily Insights 🔍</div>
+            <div id="insightsBox"></div>
+        </div>
+
+    </div>
+    <div class="graph-row">
+        <div class="chart-card">
+            <h4>Weekly Screen-Time</h4>
+            <canvas id="screenChart"></canvas>
+        </div>
+
+        <div class="chart-card">
+            <h4>Weekly Sleep Trend</h4>
+            <canvas id="sleepChart"></canvas>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

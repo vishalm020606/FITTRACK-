@@ -1,0 +1,177 @@
+        /* --- GLOBAL --- */
+        
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url("image1.png") center/cover no-repeat fixed;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 80px;
+            /* navbar space */
+        }
+        /* overlay */
+        
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            backdrop-filter: blur(3px);
+            background: rgba(0, 0, 0, 0.35);
+            z-index: -1;
+        }
+        /* --- NAVBAR --- */
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 75px;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            z-index: 9999;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff5577;
+        }
+        
+        .nav-right a {
+            margin-left: 25px;
+            color: #ffffffc7;
+            text-decoration: none;
+            font-weight: 600;
+            transition: .25s;
+        }
+        
+        .nav-right a.active,
+        .nav-right a:hover {
+            color: #ff7ea5;
+        }
+        /* --- CENTER CARD (SAME STYLE AS HEALTH ANALYSER) --- */
+        
+        .glass-card {
+            width: 520px;
+            /* 🔥 Bigger, cleaner */
+            padding: 38px;
+            /* Premium spacing */
+            margin-top: 40px;
+            margin-bottom: 140px;
+            /* Enough breathing room */
+            border-radius: 26px;
+            background: rgba(20, 20, 20, 0.48);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.55), inset 0 0 12px rgba(255, 255, 255, 0.06);
+            text-align: center;
+        }
+        /* title */
+        
+        .title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #ff5f7d;
+            font-weight: 700;
+        }
+        /* section small card */
+        
+        .section-box {
+            background: rgba(255, 255, 255, 0.07);
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 28px;
+            /* 🔥 More space between sections */
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            text-align: left;
+        }
+        /* section title */
+        
+        .section-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #ff7c95;
+            margin-bottom: 10px;
+        }
+        /* inputs */
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.14);
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+        /* big buttons */
+        
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #ff5f7d, #ff2f4f);
+            color: white;
+            font-weight: 600;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+        
+        .btn.dark {
+            background: linear-gradient(90deg, #ff5478, #ff2e52);
+            color: #fff;
+            font-weight: 600;
+            box-shadow: 0 8px 25px rgba(255, 50, 80, 0.35);
+            transition: 0.25s ease;
+        }
+        
+        .btn.dark:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 50, 80, 0.45);
+        }
+        /* preview box */
+        
+        .preview-box {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+        }
+        
+        .detail-item {
+            margin-bottom: 6px;
+            color: #ffd1df;
+        }
+        
+        .detail-item strong {
+            color: #ff6f8f;
+        }
+        /* footer links */
+        
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }

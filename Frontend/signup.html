@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Create Account | Personal Optimizer</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Poppins, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url("image1.png") center/cover no-repeat fixed;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(2px);
+        }
+        
+        .signup-box {
+            position: relative;
+            width: 400px;
+            padding: 40px;
+            border-radius: 18px;
+            /* Glass effect */
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 50, 80, 0.4);
+            box-shadow: 0 0 25px rgba(255, 40, 80, 0.65);
+            text-align: center;
+            animation: fadeUp 0.8s ease;
+        }
+        
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ff205a;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(255, 40, 80, 0.7);
+        }
+        
+        .input-box {
+            margin: 15px 0;
+            text-align: left;
+        }
+        
+        .input-box label {
+            color: #ffe2e7;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        
+        .input-box input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 90, 120, 0.3);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 16px;
+            outline: none;
+            transition: 0.25s ease;
+        }
+        
+        .input-box input:focus {
+            border-color: #ff2b68;
+            box-shadow: 0 0 12px rgba(255, 50, 80, 0.9);
+            background: rgba(255, 255, 255, 0.22);
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #ff174f, #ff5a7f);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: 0.25s ease;
+            box-shadow: 0 0 20px rgba(255, 40, 80, 0.7);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(255, 50, 90, 1);
+        }
+        
+        .link {
+            margin-top: 18px;
+            font-size: 15px;
+            color: #ffd5de;
+        }
+        
+        .link a {
+            color: #ff608b;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="signup-box">
+        <h2>Create Account ✨</h2>
+
+        <div class="input-box">
+            <label>Full Name</label>
+            <input type="text" id="fullname" placeholder="Enter full name">
+        </div>
+
+        <div class="input-box">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="Enter email">
+        </div>
+
+        <div class="input-box">
+            <label>Username</label>
+            <input type="text" id="username" placeholder="Choose a username">
+        </div>
+
+        <div class="input-box">
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Choose a password">
+        </div>
+
+        <button class="btn" onclick="signup()">Create Account</button>
+
+        <div class="link">
+            Already have an account? <a href="login.html">Login</a>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+
+</html>
